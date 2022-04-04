@@ -58,9 +58,24 @@ BEGIN
     if inserting then 
         :new.created := sysdate; 
         :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user); 
+        if :new.PERCENTAJE < 0 then
+           raise_application_error( -20501,'Percentaje NO puede ser menor a Cero...Revise...');
+        end if;
     end if; 
     :new.updated := sysdate; 
     :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user); 
+    if :new.PERCENTAJE < 0 then
+       raise_application_error( -20501,'Percentaje NO puede ser menor a Cero...Revise...');
+    end if;
+    if :new.FROM_MINIMUM < 0 then
+       raise_application_error( -20501,'FROM_MINIMUM NO puede ser menor a Cero...Revise...');
+    end if;
+    if :new.UPTO_MAXIMUM < 0 then
+       raise_application_error( -20501,'UPTO_MAXIMUM NO puede ser menor a Cero...Revise...');
+    end if;
+    if :new.FROM_MINIMUM > :new.UPTO_MAXIMUM then
+       raise_application_error( -20501,'FROM_MINIMUM debe ser menor a UPTO_MAXIMUM...Revise...');
+    end if;
 end;
 
 
@@ -73,7 +88,6 @@ github.com
 proyecto_3@unicomer.com
 pass:Marzo2022*
 user:proyecto-3-unicomer
-
 git init
 git config user.name "proyecto-3-unicomer"
 git config user.email "proyecto_3@unicomer.com"
@@ -83,8 +97,22 @@ git init
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/proyecto-3-unicomer/proyecto-3-unicomer.git
+
+git init
+git add .
+git commit
+git remote add origin https://github.com/proyecto-3-unicomer/proyecto-3-unicomer.git
 git push -u origin main
 
 
 error: remote origin already exists
 git remote remove origin
+gitflow standar
+feature/bonus-variables
+
+Master Detalle por Grupos
+
+
+numero alineados a la derecha
+porcetaje signo de porcetanje
+aprobechar el espacio usando css
